@@ -22,8 +22,9 @@
     nix-output-monitor
 
     # productivity
+    gh
     glow # markdown previewer in terminal
-    htop  # replacement of htop/nmon
+    htop
   ];
 
   # git

@@ -34,11 +34,15 @@
     file
     # dev toolchain
     git
-    gh
     libgcc
+    gcc
+    gdb
+    gnumake
     cmake
     nodejs
-
+    clang
+    clang-tools
+    lldb
     # zsh & plugins
     zsh
     oh-my-zsh
