@@ -9,14 +9,6 @@
     neofetch
     aria2
     # misc
-    file
-    which
-    tree
-    gnused
-    gnutar
-    gawk
-    zstd
-    gnupg
 
     # nix related
     nix-output-monitor
@@ -24,7 +16,8 @@
     # productivity
     gh
     glow # markdown previewer in terminal
-    htop
+    oh-my-zsh
+    zsh-autosuggestions
   ];
 
   # git
@@ -38,6 +31,23 @@
   programs.htop.enable = true;
   programs.bat.enable = true;
 
+  programs.zsh = {
+    enable = true;
+    # autosuggestions.enable = true;
+    enableAutosuggestions = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "fino";
+      plugins = [
+        "git"
+        "themes"
+        "direnv"
+        # no need to write this
+        #"zsh-autosuggestions"
+      ];
+    };
+  };
+
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new home Manager release introduces backwards
@@ -46,8 +56,8 @@
   # You can update home Manager without changing this value. See
   # the home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "23.11";
 
+  home.stateVersion = "24.05";
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

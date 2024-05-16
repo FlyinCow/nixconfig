@@ -32,39 +32,52 @@
     # tar
     vim
     file
+    htop
+    file
+    tree
+    gnused
+    gnutar
+    gawk
     # dev toolchain
     git
-    libgcc
-    gcc
-    gdb
-    gnumake
-    cmake
+    # c/c++ toolchain
+    # libgcc
+    # gcc
+    # gdb
+    # gnumake
+    # cmake
+    # clang
+    # clang-tools
+    # lldb
     nodejs
-    clang
-    clang-tools
-    lldb
     # zsh & plugins
     zsh
-    oh-my-zsh
-    zsh-autosuggestions
+    # oh-my-zsh
+    # zsh-autosuggestions
+    direnv
   ];
 
   # zsh configurations
   programs.zsh = {
     enable = true;
-    autosuggestions.enable = true;
-    ohMyZsh = {
-      enable = true;
-      theme = "fino";
-      plugins = [
-        "git"
-        "themes"
-        # no need to write this
-        #"zsh-autosuggestions"
-      ];
-    };
+    # autosuggestions.enable = true;
+    # ohMyZsh = {
+    #   enable = true;
+    #   theme = "fino";
+    #   plugins = [
+    #     "git"
+    #     "themes"
+    #     "direnv"
+    #     # no need to write this
+    #     #"zsh-autosuggestions"
+    #   ];
+    # };
   };
 
+  programs.direnv = {
+    enable = true;
+    # silent = true;
+  };
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
