@@ -18,6 +18,7 @@
     glow # markdown previewer in terminal
     oh-my-zsh
     zsh-autosuggestions
+    fzf
   ];
 
   # git
