@@ -17,8 +17,10 @@
     gh
     glow # markdown previewer in terminal
     oh-my-zsh
-    zsh-autosuggestions
+    # zsh-autosuggestions
     fzf
+
+    # neovim
   ];
 
   # git
@@ -29,6 +31,7 @@
     extraConfig = { github.user = "FlyinCow"; };
   };
 
+  programs.neovim.enable = true;
   programs.htop.enable = true;
   programs.bat.enable = true;
 

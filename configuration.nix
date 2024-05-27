@@ -42,9 +42,9 @@
     git
     # c/c++ toolchain
     # libgcc
-    # gcc
+    gcc
     # gdb
-    # gnumake
+    gnumake
     # cmake
     # clang
     # clang-tools
@@ -54,6 +54,8 @@
     zsh
     # oh-my-zsh
     # zsh-autosuggestions
+    nil
+    lua
     direnv
   ];
 
