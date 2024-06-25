@@ -32,9 +32,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    nix-ld.url = "github:Mic92/nix-ld";
+    # this line assume that you also have nixpkgs as an input
+    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, dotfiles, nixpkgs, nixpkgs-unstable, nixos-wsl, home-manager, ... }:
+  outputs = inputs@{ self, nix-ld, dotfiles, nixpkgs, nixpkgs-unstable, nixos-wsl, home-manager, ... }:
   let 
     me = "dbv";
     specialArgs = { inherit inputs me; };
@@ -49,6 +52,8 @@
           inherit me inputs dotfiles;
         };
       }
+      # nix-ld.nixosModules.nid-ld
+      # { programs.nix-ld.dev.enable = true; }
     ];
   in 
   {
