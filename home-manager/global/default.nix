@@ -1,6 +1,9 @@
-# per-app configurations entry for every host
-{...}:
+# # imports per-app configuration of those will be installed in every machine
+{ ... }:
 
 {
-  imports = [  ];
+  imports = [
+    ./zsh.nix
+    ./git.nix
+  ];
 }

@@ -1,7 +1,7 @@
 # system level configurations
 { config, lib, pkgs, inputs, me, ... }:
 
-{  
+{
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   networking.proxy = {
     httpProxy = "http://127.0.0.1:7890";
@@ -15,21 +15,20 @@
     home = "/home/${me}";
     shell = pkgs.zsh;
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = [ "wheel" ];
   };
-  
+
   nix.settings.substituters = lib.mkBefore [
     "https://mirror.sjtu.edu.cn/nix-channels/store"
     #"https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
     #"https://mirrors.bfsu.edu.cn/nix-channels/store"
-  ];  
+  ];
 
   environment.systemPackages = with pkgs; [
     # tools
     wget
     curl
     zip
-    # tar
     vim
     file
     htop
@@ -45,43 +44,28 @@
     gcc
     # gdb
     gnumake
-    # cmake
+    cmake
     # clang
     # clang-tools
     # lldb
     nodejs
-    # zsh & plugins
+    # python
+    # shell
     zsh
-    # oh-my-zsh
-    # zsh-autosuggestions
-    nil
-    lua
+    nil # nix lsp
+    nixpkgs-fmt # nix code formatter
     direnv
     nix-ld
   ];
 
   # zsh configurations
-  programs.zsh = {
-    enable = true;
-    # autosuggestions.enable = true;
-    # ohMyZsh = {
-    #   enable = true;
-    #   theme = "fino";
-    #   plugins = [
-    #     "git"
-    #     "themes"
-    #     "direnv"
-    #     # no need to write this
-    #     #"zsh-autosuggestions"
-    #   ];
-    # };
-  };
+  programs.zsh.enable = true;
 
   programs.direnv = {
     enable = true;
     # silent = true;
   };
-  
+
   programs.nix-ld.enable = true;
   programs.nix-ld.package = pkgs.nix-ld-rs;
   # This value determines the NixOS release from which the default

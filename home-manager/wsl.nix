@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ./home.nix
-    ./global
+    ./home.nix # home-manager configuration
+    ./global # imports per-app configuration of those will be installed in every machine
     ./wsl
   ];
 }

@@ -23,34 +23,11 @@
     # neovim
   ];
 
-  # git
-  programs.git = {
-    enable = true;
-    userName = "Bowen Ding";
-    userEmail = "bowendean_cow@foxmail.com";
-    extraConfig = { github.user = "FlyinCow"; };
-  };
 
+  # if further configurations needed they should be in `home-manager/<hostname or global>/<app name>.nix`
   programs.neovim.enable = true;
   programs.htop.enable = true;
   programs.bat.enable = true;
-
-  programs.zsh = {
-    enable = true;
-    # autosuggestions.enable = true;
-    enableAutosuggestions = true;
-    oh-my-zsh = {
-      enable = true;
-      theme = "fino";
-      plugins = [
-        "git"
-        "themes"
-        "direnv"
-        # no need to write this
-        #"zsh-autosuggestions"
-      ];
-    };
-  };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

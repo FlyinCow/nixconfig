@@ -32,37 +32,34 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    nix-ld.url = "github:Mic92/nix-ld";
-    # this line assume that you also have nixpkgs as an input
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-ld, dotfiles, nixpkgs, nixpkgs-unstable, nixos-wsl, home-manager, ... }:
-  let 
-    me = "dbv";
-    specialArgs = { inherit inputs me; };
-    common-modules = [
-      ./configuration.nix
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.backupFileExtension = "backup";
-        home-manager.extraSpecialArgs = {
-          inherit me inputs dotfiles;
+  outputs = inputs@{ self, dotfiles, nixpkgs, nixpkgs-unstable, nixos-wsl, home-manager, ... }:
+    let
+      me = "dbv";
+      specialArgs = { inherit inputs me; };
+      common-modules = [
+        ./configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
+          home-manager.extraSpecialArgs = {
+            inherit me inputs dotfiles;
+          };
+        }
+        # nix-ld.nixosModules.nid-ld
+        # { programs.nix-ld.dev.enable = true; }
+      ];
+    in
+    {
+      nixosConfigurations = {
+        wsl = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          system = "x86_64-linux";
+          modules = common-modules ++ [ nixos-wsl.nixosModules.wsl ./hosts/wsl.nix ];
         };
-      }
-      # nix-ld.nixosModules.nid-ld
-      # { programs.nix-ld.dev.enable = true; }
-    ];
-  in 
-  {
-    nixosConfigurations = {
-      wsl = nixpkgs.lib.nixosSystem {
-        inherit specialArgs;
-        system = "x86_64-linux";
-        modules = common-modules ++ [ nixos-wsl.nixosModules.wsl ./hosts/wsl.nix];
       };
     };
-  };
 }
