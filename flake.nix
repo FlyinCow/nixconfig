@@ -6,7 +6,7 @@
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [
       "https://mirror.sjtu.edu.cn/nix-channels/store"
-      "https://cache.nixos.org/"
+      # "https://cache.nixos.org/"
     ];
     # extra-substituters = [ "https://nix-community.cachix.org" ];
     # extra-trusted-public-keys = [
@@ -19,22 +19,22 @@
       url = "path:./dotfiles";
       flake = false;
     };
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs-unstable = {
-      url = "github:nixos/nixpkgs/nixpkgs-unstable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # nixpkgs-unstable = {
+    #   url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, dotfiles, nixpkgs, nixpkgs-unstable, nixos-wsl, home-manager, ... }:
+  outputs = inputs@{ self, dotfiles, nixpkgs, nixos-wsl, home-manager, ... }:
     let
       me = "dbv";
       specialArgs = { inherit inputs me; };
@@ -44,7 +44,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
+          # home-manager.backupFileExtension = "backup";
           home-manager.extraSpecialArgs = {
             inherit me inputs dotfiles;
           };

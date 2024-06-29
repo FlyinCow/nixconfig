@@ -1,6 +1,8 @@
 # common home-manager configurations
-{ config, pkgs, me, ... }:
-
+{ pkgs, me, ... }:
+# let
+# pkgsUnstable = import <nixpkgs-unstable> {};
+# in
 {
   home.username = me;
   home.homeDirectory = "/home/${me}";
@@ -21,6 +23,7 @@
     fzf
 
     # neovim
+    # pkgsUnstable.neovim
   ];
 
 

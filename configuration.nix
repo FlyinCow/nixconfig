@@ -18,11 +18,11 @@
     extraGroups = [ "wheel" ];
   };
 
-  nix.settings.substituters = lib.mkBefore [
-    "https://mirror.sjtu.edu.cn/nix-channels/store"
-    #"https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-    #"https://mirrors.bfsu.edu.cn/nix-channels/store"
-  ];
+  # nix.settings.substituters = lib.mkBefore [
+  #   "https://mirror.sjtu.edu.cn/nix-channels/store"
+  #   #"https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+  #   #"https://mirrors.bfsu.edu.cn/nix-channels/store"
+  # ];
 
   environment.systemPackages = with pkgs; [
     # tools
@@ -56,6 +56,8 @@
     nixpkgs-fmt # nix code formatter
     direnv
     nix-ld
+
+    # neovim
   ];
 
   # zsh configurations
