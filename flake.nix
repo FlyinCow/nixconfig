@@ -34,6 +34,7 @@
     };
   };
 
+<<<<<<< HEAD
   outputs = inputs@{ self, dotfiles, nixpkgs, nixos-wsl, home-manager, ... }:
     let
       me = "dbv";
@@ -60,6 +61,30 @@
           system = "x86_64-linux";
           modules = common-modules ++ [ nixos-wsl.nixosModules.wsl ./hosts/wsl.nix ];
         };
+=======
+  outputs = inputs@{ self, dotfiles, nixpkgs, nixpkgs-unstable, nixos-wsl, home-manager, ... }:
+  let 
+    me = "dbv";
+    common-modules = [
+      ./configuration.nix
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "backup";
+        home-manager.extraSpecialArgs = {
+          inherit me inputs dotfiles;
+        };
+      }
+    ];
+  in 
+  {
+    nixosConfigurations = {
+      wsl = nixpkgs.lib.nixosSystem {
+        specialArgs = inputs;
+        system = "x86_64-linux";
+        modules = common-modules ++ [ nixos-wsl.nixosModules.wsl ./hosts/wsl.nix];
+>>>>>>> 17d9c87 (temp)
       };
     };
 }

@@ -10,5 +10,5 @@
   home-manager.users.${me} = {
     imports = [ ../home-manager/wsl.nix ];
   };
-
+  
 }

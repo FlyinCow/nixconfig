@@ -1,8 +1,13 @@
 # common home-manager configurations
+<<<<<<< HEAD
 { pkgs, me, ... }:
 # let
 # pkgsUnstable = import <nixpkgs-unstable> {};
 # in
+=======
+{ config, pkgs, me, home-manager,... }:
+
+>>>>>>> 17d9c87 (temp)
 {
   home.username = me;
   home.homeDirectory = "/home/${me}";
